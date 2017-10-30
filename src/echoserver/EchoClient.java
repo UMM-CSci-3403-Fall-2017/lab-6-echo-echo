@@ -7,17 +7,12 @@ public class EchoClient {
 		try {
 			Socket socket = new Socket("127.0.0.1", 6013);
 			OutputStream output = socket.getOutputStream();
+			InputStream input = socket.getInputStream();
 			int toWrite;
 			
 			while((toWrite = System.in.read()) != -1){
-				System.out.println("enter something");
 				output.write(toWrite);
-			}
-			
-			int toPrint;
-			InputStream input = socket.getInputStream();
-			while((toPrint = input.read()) != -1){
-				System.out.println(toPrint);
+				System.out.println(input.read());
 			}
 			
 			input.close();
