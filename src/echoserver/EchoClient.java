@@ -12,7 +12,7 @@ public class EchoClient {
 			
 			while((toWrite = System.in.read()) != -1){
 				output.write(toWrite);
-				System.out.println(input.read());
+				System.out.write(input.read());
 			}
 			
 			input.close();
