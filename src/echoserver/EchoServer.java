@@ -10,12 +10,11 @@ public class EchoServer {
 			while (true) {
 				System.out.println("Got a request!");
 				Socket client = sock.accept();
-
 				InputStream input = client.getInputStream();
 				OutputStream output = client.getOutputStream();
-				int toWrite;
+				byte[] toWrite = new byte[1];
 				
-				while((toWrite = input.read()) != -1){
+				while(input.read(toWrite) != -1){
 					output.write(toWrite);
 				}
 				

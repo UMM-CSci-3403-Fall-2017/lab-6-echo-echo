@@ -6,13 +6,17 @@ public class EchoClient {
 	public static void main(String[] args) {
 		try {
 			Socket socket = new Socket("127.0.0.1", 6013);
+			DataInputStream in = new DataInputStream(System.in);
 			OutputStream output = socket.getOutputStream();
 			InputStream input = socket.getInputStream();
-			int toWrite;
+			byte[] toWrite = new byte[1];
 			
-			while((toWrite = System.in.read()) != -1){
+			while(in.read(toWrite) != -1){
 				output.write(toWrite);
-				System.out.write(input.read());
+				
+				byte[] toPrint = new byte[1];
+				input.read(toPrint);
+				System.out.write(toPrint, 0, 1);
 			}
 			
 			input.close();
