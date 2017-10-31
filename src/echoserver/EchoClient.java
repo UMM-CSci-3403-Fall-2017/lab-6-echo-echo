@@ -7,10 +7,14 @@ public class EchoClient {
 		try {
 			Socket socket = new Socket("127.0.0.1", 6013);
 			DataInputStream in = new DataInputStream(System.in);
+			
+			//gets the socket's output and input stream
 			OutputStream output = socket.getOutputStream();
 			InputStream input = socket.getInputStream();
 			byte[] toWrite = new byte[1];
 			
+			//iterates through the standard input byte by byte and writes it to the socket's output stream
+			//then gets the byte that the server returns and prints that byte out as a standard output
 			while(in.read(toWrite) != -1){
 				output.write(toWrite);
 				
